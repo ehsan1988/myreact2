@@ -24918,7 +24918,15 @@
 	            'div',
 	            null,
 	            React.createElement(Nav, null),
-	            this.props.children
+	            React.createElement(
+	                'div',
+	                { className: 'row' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'columns medium-6 large-4 small-centered' },
+	                    this.props.children
+	                )
+	            )
 	        );
 	    }
 	});
@@ -24936,28 +24944,87 @@
 	    Link = _require.Link,
 	    IndexLink = _require.IndexLink;
 
-	var Nav = function Nav(props) {
-	    return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	            IndexLink,
-	            { to: '/' },
-	            ' Weather Page'
-	        ),
-	        React.createElement(
-	            Link,
-	            { to: '/about' },
-	            'About'
-	        ),
-	        React.createElement(
-	            Link,
-	            { to: '/example' },
-	            'Example '
-	        )
-	    );
-	};
-	module.exports = Nav;
+	var Nav = React.createClass({
+	    displayName: 'Nav',
+
+	    onSearch: function onSearch(e) {
+	        e.preventDefault();
+	        alert('Not Ready Yet');
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'top-bar' },
+	            React.createElement(
+	                'div',
+	                { className: 'top-bar-left' },
+	                React.createElement(
+	                    'ul',
+	                    { className: 'menu' },
+	                    React.createElement(
+	                        'li',
+	                        { className: 'menu-text' },
+	                        React.createElement(
+	                            'h6',
+	                            null,
+	                            'React Application'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'li',
+	                        null,
+	                        React.createElement(
+	                            IndexLink,
+	                            { to: '/' },
+	                            ' Weather Page'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'li',
+	                        null,
+	                        React.createElement(
+	                            Link,
+	                            { to: '/about' },
+	                            'About'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'li',
+	                        null,
+	                        React.createElement(
+	                            Link,
+	                            { to: '/example' },
+	                            'Example '
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'top-bar-right' },
+	                React.createElement(
+	                    'form',
+	                    { onSubmit: this.onSearch },
+	                    React.createElement(
+	                        'ul',
+	                        { className: 'menu' },
+	                        React.createElement(
+	                            'li',
+	                            null,
+	                            React.createElement('input', { type: 'text', placeholder: 'Enter the City...' })
+	                        ),
+	                        React.createElement(
+	                            'li',
+	                            null,
+	                            React.createElement('input', { type: 'submit', value: 'Send Data', className: 'button' })
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+		module.exports = Nav;
 
 /***/ },
 /* 225 */
@@ -24979,7 +25046,6 @@
 	    },
 	    handleSearch: function handleSearch(location) {
 	        var that = this;
-	        debugger;
 	        this.setState({ isLoading: true });
 	        openWeatherMap.getTemp(location).then(function (temp) {
 	            that.setState({
@@ -26206,17 +26272,22 @@
 /* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 	var About = function About() {
 	    return React.createElement(
-	        'div',
+	        "div",
 	        null,
 	        React.createElement(
-	            'h4',
-	            null,
-	            'About page'
+	            "h3",
+	            { className: "text-center" },
+	            "About page"
+	        ),
+	        React.createElement(
+	            "p",
+	            { className: "text-justify" },
+	            "I starting React and i love it.It is hard for me but i like using it. andrew mead love your toturial tanx a lot."
 	        )
 	    );
 	};
@@ -26229,14 +26300,40 @@
 	'use strict';
 
 	var React = __webpack_require__(8);
+
+	var _require = __webpack_require__(166),
+	    Link = _require.Link;
+
 	var Examples = function Examples() {
 	    return React.createElement(
 	        'div',
 	        null,
 	        React.createElement(
 	            'h3',
-	            null,
+	            { className: 'text-center' },
 	            'Examples'
+	        ),
+	        React.createElement(
+	            'ol',
+	            null,
+	            React.createElement(
+	                'li',
+	                null,
+	                React.createElement(
+	                    Link,
+	                    { to: '/?location=birjand' },
+	                    'Birjand'
+	                )
+	            ),
+	            React.createElement(
+	                'li',
+	                null,
+	                React.createElement(
+	                    Link,
+	                    { to: '/?location=mashhad' },
+	                    'Mashhad'
+	                )
+	            )
 	        )
 	    );
 	};
